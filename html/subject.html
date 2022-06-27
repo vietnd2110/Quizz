@@ -1,0 +1,86 @@
+<section>
+    <div class="container-fluid p-0 ">
+        <!--  -->
+        <div class="container-fluid p-0 mt-5 bg-light">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="mx-5 my-4">Danh Sách Khóa Học</h3>
+                </div>
+            </div>
+            <div class="container-fluid p-0">
+                <div class="row mt-4 mx-2">
+                    <article class="col-12 col-sm-12 col-md-7 col-lg-9">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mt-2"
+                                ng-repeat="item in subjects |limitTo:8:begin">
+                                <div class="card card-shadow h-100">
+                                    <img src="images/logos/{{item.Logo}}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{item.Name}}</h5>
+
+                                        <div ng-show="student != null">
+                                            <a class="btn btn-success" href="#quizz/{{item.Id}}/{{item.Name}}">
+                                                Test Now
+                                            </a>
+                                        </div>
+                                        <div ng-show="student == null">
+                                            <a class="btn btn-success" href="" ng-click="test()">
+                                                Test Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <nav aria-label="Page navigation example" class="mt-5">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item">
+                                    <a class="page-link" href="" ng-click="first()">First</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="" ng-click="prev()">
+                                        << </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="" ng-click="next()">>></a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="" ng-click="last()">Last</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </article>
+                    <aside class="col-12 col-sm-12 col-md-5 col-lg-3 mt-2">
+                        <div class="card">
+                            <div class="card-header " data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                <a href="" class="text-decoration-none text-black"><i class="fas fa-list"></i> Danh Mục
+                                    Môn Học</a>
+                            </div>
+                            <div class="collapse card-body p-0" id="collapseExample">
+                                <ul class="list-group" ng-repeat="items in subjects">
+                                    <li class="list-group-item">
+                                        <img src="../images/logos/{{items.Logo}}" class="float-start" width="30" alt="">
+                                        <div ng-show="student != null">
+                                            <a href="#quizz/{{items.Id}}/{{items.Name}}"
+                                            class="text-decoration-none text-black"> {{items.Name}}</a>
+                                        </div>
+                                        <div ng-show="student == null" class="float-start">
+                                            <a href="" class="text-decoration-none text-black" ng-click="test()">
+                                                 {{items.Name}}
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+                <div class="row mt-5">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

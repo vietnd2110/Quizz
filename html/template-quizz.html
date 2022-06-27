@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row" ng-show="!inProgess">
+        <div class="col text-center">
+            <h3 class="text-secondary mt-4">Bắt Đầu Làm BÀi Thi</h3>
+            <button class="btn btn-primary" ng-click="start()">Start</button>
+        </div>
+    </div>
+    <div class="row" ng-show="quizOver">
+        
+        <div class="col text-center">
+            <h3 class="text-secondary">BÀi Làm Hoàn Thành</h3>
+            <button class="btn btn-primary" ng-click="reset()">Play Again</button>
+        </div>
+    </div>
+    <div ng-show="inProgess">
+        <div ng-show="!quizOver">
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <h2 class="text-primary mt-5"> <i class="fas fa-clock text-success"></i> 10:00</h2>
+                    <button class="btn btn-success float-end" ng-click="endNow()">End Now</button>
+                </div>
+                <div class="row mx-1 mt-2">
+                    <div class="card p-0">
+                        <div class="card-header bg-success">
+                            <img src="images/logos/JAAV.png " class="float-start mt-2" width="30" alt="">
+                            <p class="text-white fs-5 float-start mt-1 mx-2"> {{subjectName}} </p>
+                            <span class="float-end badge bg-danger mt-2 fs-5">{{id}}/10</span>
+                        </div>
+                        <div class="card-body mt-3">
+                            <div class="card-text">
+                                <label for="" class="fs-5">{{question}}</label>
+                                <hr>
+                                <div class="form-check mt-2" ng-repeat="item in options">
+                                    <label for="answer" class="form-check-label">
+                                        <input type="radio" name="answer" id="answer" class="form-check-input"
+                                            value="{{item.Id}}">
+                                        {{item.Text}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer mt-4">
+                            <div ng-show="answerMode">
+                                <button class="btn btn-success" ng-click="checkAnswer()">Submit</button>
+                            </div>
+                            <div ng-show="!answerMode">
+                                <button class="btn btn-success" ng-click="nextQuestion()">next</button>
+                                <!-- <span ng-show="correctAns">Đúng</span>
+                                <span ng-show="!correctAns">Sai</span> -->
+                            </div>
+                            <span class="badge bg-success mt-2 float-end">{{score}}/10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>

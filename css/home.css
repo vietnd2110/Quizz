@@ -1,0 +1,32 @@
+/*  */
+.nav{
+    background-color: #002147 !important;
+}
+.nav-phone .fa-phone-alt, .fa-mail-bulk{
+    color: #dae1ec !important;
+}
+
+.nav-tintuc a{
+    color: #dae1ec !important;
+}
+
+/*  */
+.navbar ul li a:hover{
+    color: rgb(184, 25, 25) !important;
+}
+.navbar ul li a{
+    color: rgb(0, 0, 0) !important;
+}
+
+/*  */
+.card-shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* footer */
+.item-lienhe{
+    background-color: rgb(52, 88, 100);
+}
+.item-menu{
+    background-color: rgb(58, 79, 87);
+}

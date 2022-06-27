@@ -1,0 +1,169 @@
+<style>
+    .loading {
+        background: rgba(0, 0, 0, .5);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    }
+
+    .spinner-center {
+        top: 50%;
+        left: 50%;
+        position: absolute;
+    }
+</style>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 offset-1">
+                <div class="card mt-4 h-100">
+                    <div class="card-header text-white bg-dark p-0 m-0">
+                        <h4 class="text-center my-3">Thêm Bài Thi</h4>
+                    </div>
+                    <div ng-show="isLoading" class="loading">
+                        <div class="spinner-border text-primary spinner-center" role="status">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <button data-bs-toggle="modal" data-bs-target="#modal_insert_"
+                                            class="btn btn-success my-4">Thêm Mới</button>
+                                        <div class="modal fade" id="modal_insert_" tabindex="-1"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Thêm Mới Bài Thi
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="" method="POST" ng-submit="onSubmitForm($event)">
+                                                            <div class="form-group">
+                                                                <label for="id">ID</label>
+                                                                <input type="text" ng-model="sub.Id" class="form-control" name="id" id="id">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Tên Bài</label>
+                                                                <input type="text" ng-model="sub.Name" class="form-control" name="name" id="name">
+                                                            </div>
+                                
+                                                            <div class="form-group mt-2">
+                                                                <label for="image">Ảnh</label>
+                                                                <input type="file" ng-model="sub.Logo" class="form-control" name="image" id="image">
+                                                            </div>
+                                                            <div class="form-group my-4">
+                                                                <button class="btn btn-success">Thêm Mới</button>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                Đóng
+                                                            </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                       
+                       
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Image</th>
+                                    <th colspan="2" class="text-center">Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in subjects">
+                                    <td>{{item.Id}}</td>
+                                    <td>{{item.Name}}</td>
+                                    <td>{{item.Logo}}</td>
+                                    <td>
+                                        <button data-bs-toggle="modal" data-bs-target="#modal_delete_{{ item.Id }}"
+                                            class="btn btn-danger">Xóa</button>
+                                        <div class="modal fade" id="modal_delete_{{ item.Id }}" tabindex="-1"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Bạn Có Muốn Xóa Hay Không ?
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">Xác nhận xóa?</div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">
+                                                            Đóng
+                                                        </button>
+                                                        <button type="button" ng-click="onDelete(item.Id,$index)"
+                                                            class="btn btn-danger">
+                                                            Xóa
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button data-bs-toggle="modal" data-bs-target="#modal_update_{{ item.Id }}"
+                                            class="btn btn-secondary">Sửa</button>
+                                        <div class="modal fade" id="modal_update_{{ item.Id }}" tabindex="-1"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Cập Nhật Tài Khoản
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="" method="POST" ng-submit="onSubmitFormUpdtae($event,item.Id)">
+                                                            <div class="form-group">
+                                                                <label for="id">ID</label>
+                                                                <input type="text" ng-model="item.Id" class="form-control" name="id" id="id">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Tên Bài</label>
+                                                                <input type="text" ng-model="item.Name" class="form-control" name="name" id="name">
+                                                            </div>
+                                
+                                                            <div class="form-group mt-2">
+                                                                <label for="image">Ảnh</label>
+                                                                <input type="file" ng-model="item.Logo" class="form-control" name="image" id="image">
+                                                            </div>
+                                                            <div class="form-group my-4">
+                                                                <button class="btn btn-success">Cập Nhật</button>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                Đóng
+                                                            </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
